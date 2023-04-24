@@ -1,0 +1,19 @@
+create or replace function COUNT_RECORD_EMPLOYEES
+return varchar2
+as
+    v_count number;
+begin
+    select count(*) into v_count from employees;
+    return 'Количество записей в таблице employees: ' || to_char(v_count);
+end COUNT_RECORD_EMPLOYEES;
+/
+
+create or replace function COUNT_RECORD_Orders
+return varchar2
+as
+    v_count number;
+begin
+    select count(*) into v_count from Orders;
+    return 'Количество записей в таблице Orders: ' || to_char(v_count);
+end COUNT_RECORD_Orders;
+/
