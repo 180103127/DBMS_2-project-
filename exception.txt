@@ -1,9 +1,3 @@
-SELECT c.name, COUNT(*) as total_count
-FROM product p
-JOIN category c ON p.categoty_id = c.category_id
-GROUP BY c.name;
-
-/
 ALTER TRIGGER "BI_ORDERS" ENABLE;
   CREATE OR REPLACE EDITIONABLE TRIGGER "ORDERS_DUPLICATE_CHECK" 
 BEFORE INSERT ON orders
