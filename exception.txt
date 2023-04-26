@@ -22,3 +22,18 @@ BEGIN
 END;
 /
 ALTER TRIGGER "ORDERS_DUPLICATE_CHECK" ENABLE;
+
+CREATE OR REPLACE TRIGGER product_name_check
+BEFORE INSERT OR UPDATE ON product
+FOR EACH ROW
+DECLARE
+  invalid_name EXCEPTION;
+  PRAGMA EXCEPTION_INIT (invalid_name, -20001);
+BEGIN
+  IF LENGTH(:NEW.PRODUCT_NAME) < 5 THEN
+    RAISE invalid_name;
+  END IF;
+EXCEPTION
+  WHEN invalid_name THEN
+    raise_application_error(-20001, 'Name of product must be at least 5 characters long!');
+END;
